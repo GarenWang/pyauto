@@ -19,3 +19,9 @@ text2_lines = text2.splitlines()
 
 d = difflib.HtmlDiff()
 print d.make_file(text1_lines, text2_lines)
+
+
+
+运行方式：
+shiyanlou:pythontest/ $ python htmldiff.py >> htmldiff.html
+shiyanlou:pythontest/ $ firefox htmldiff.html
