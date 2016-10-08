@@ -10,10 +10,10 @@ except Exception,e:
     print "Usage: simple3.py filename1 filename2"
     sys.exit()
 
-def readfile(filename):
+def readfile(filename):     #文件读取分隔函数
     try:
         fileHandle = open (filename, 'rb' ) 
-        text=fileHandle.read().splitlines()
+        text=fileHandle.read().splitlines()     #读取后以行进行分隔
         fileHandle.close()
         return text
     except IOError as error:
@@ -25,7 +25,7 @@ if textfile1=="" or textfile2=="":
     sys.exit()
 
 
-text1_lines = readfile(textfile1) 
+text1_lines = readfile(textfile1)      #使用readfile函数，获取分隔后的字符串
 text2_lines = readfile(textfile2) 
 
 d = difflib.HtmlDiff()
