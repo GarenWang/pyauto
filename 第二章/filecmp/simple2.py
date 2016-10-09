@@ -6,15 +6,15 @@ import re
 import shutil
 holderlist=[]
  
-def compareme(dir1, dir2):
+def compareme(dir1, dir2):    #递归获取更新函数
     dircomp=filecmp.dircmp(dir1,dir2)
     only_in_one=dircomp.left_only
     diff_in_one=dircomp.diff_files
     dirpath=os.path.abspath(dir1)
     [holderlist.append(os.path.abspath( os.path.join(dir1,x) )) for x in only_in_one]
     [holderlist.append(os.path.abspath( os.path.join(dir1,x) )) for x in diff_in_one]
-    if len(dircomp.common_dirs) > 0:
-        for item in dircomp.common_dirs:
+    if len(dircomp.common_dirs) > 0:  #判断是否存在相同子目录，存在则递归
+        for item in dircomp.common_dirs:   #递归子目录
             compareme(os.path.abspath(os.path.join(dir1,item)), \
             os.path.abspath(os.path.join(dir2,item)))
         return holderlist
@@ -30,15 +30,15 @@ def main():
     source_files=compareme(dir1,dir2)
     dir1=os.path.abspath(dir1)
 
-    if not dir2.endswith('/'): dir2=dir2+'/'
+    if not dir2.endswith('/'): dir2=dir2+'/'   #备份目录路径加"/" 符
     dir2=os.path.abspath(dir2)
     destination_files=[]
     createdir_bool=False
 
     for item in source_files:
-        destination_dir=re.sub(dir1, dir2, item)
+        destination_dir=re.sub(dir1, dir2, item)  #将源目录差异路径清单对应替换成备份目录
         destination_files.append(destination_dir)
-        if os.path.isdir(item):
+        if os.path.isdir(item):  #如果差异路径为目录且不存在，则在备份目录中创建
             if not os.path.exists(destination_dir):
                 os.makedirs(destination_dir)
                 createdir_bool=True
@@ -61,3 +61,7 @@ def main():
  
 if __name__ == '__main__':
     main()
+
+  
+运行方式：
+python simple2.py /home/shiyanlou/pythontest/dir1 /home/shiyanlou/pythontest/dir2
