@@ -1,0 +1,6 @@
+1.sudo pip install cryptography
+2.sudo pip install pycrypto
+3.sudo pip install ecdsa
+4.sudo pip install paramiko
+
+如果还不行，就根据报错信息，一步一步安装所需要的文件。
