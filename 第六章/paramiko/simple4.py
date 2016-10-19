@@ -54,7 +54,7 @@ while not buff.endswith(passinfo):
 channel.send(password+'\n')
 
 buff=''
-while not buff.endswith('# '):
+while not buff.endswith('# '):  #等待命令执行完成后，屏幕输出的‘#’
     resp = channel.recv(9999)
     if not resp.find(passinfo)==-1:
         print 'Error info: Authentication failed.'
