@@ -12,3 +12,6 @@ def local_task():
 def remote_task():
     with cd("/data/logs"):
         run("ls -l")
+
+
+@runs_once的作用域到文件尾部，或者遇到下一个@xxx修饰为止
