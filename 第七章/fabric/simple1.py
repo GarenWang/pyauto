@@ -14,4 +14,4 @@ def remote_task():
         run("ls -l")
 
 
-@runs_once的作用域到文件尾部，或者遇到下一个@xxx修饰为止
+@runs_once的作用域为其下的第一个函数
